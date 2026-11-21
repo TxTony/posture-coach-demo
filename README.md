@@ -8,7 +8,9 @@
 - Détection du cycle bilatéral à partir des angles des coudes et de la hauteur des poignets.
 - HUD vidéo, comptage des répétitions, phase du mouvement et bouton plein écran.
 - Vitesse moyenne de variation de l’angle des coudes pendant la descente et la poussée, affichée en degrés par seconde (°/s). Ce n’est pas la vitesse réelle des haltères.
-- Symétrie estimée par l’écart entre les amplitudes angulaires gauche/droite et le décalage temporel d’arrivée des bras au sommet.
+- Symétrie estimée par l’écart d’amplitude gauche/droite et le décalage d’arrivée au sommet, avec un bilan lisible « proche » ou « écart à observer ».
+- Variation maximale de l’inclinaison du buste pendant la répétition, calculée en 2D à partir des épaules et des hanches.
+- Position latérale de chaque poignet par rapport à son épaule au sommet, exprimée en pourcentage de la largeur des épaules.
 - Après quelques répétitions, une baisse de vitesse de poussée par rapport aux premières répétitions est affichée comme tendance. Ce n’est pas une mesure de fatigue musculaire.
 
 La caméra ne détecte pas les haltères et ne mesure pas leur poids. Les autres exercices, le stretching, l’analyse complète de la technique et la détection de fatigue réelle restent hors périmètre.
@@ -21,7 +23,7 @@ Pour un essai local, sers le fichier avec un serveur HTTP, par exemple python3 -
 
 ## Limites
 
-L’angle du coude est calculé entre épaule, coude et poignet, en degrés. Les vitesses sont des moyennes calculées sur les phases détectées, pas une mesure continue du trajet des haltères. Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations ; la symétrie affichée n’est pas une analyse biomécanique complète. Le ralentissement peut avoir plusieurs causes ; il ne prédit ni la fatigue musculaire, ni une blessure, ni la sécurité d’une charge. Commence léger et arrête si tu ressens une douleur.
+L’angle du coude est calculé entre épaule, coude et poignet, en degrés. Les vitesses sont des moyennes calculées sur les phases détectées, pas une mesure continue du trajet des haltères. La variation du buste compare son inclinaison au début et pendant la répétition ; elle ne détecte pas une cambrure avant/arrière depuis une vue de face. Le décalage des poignets est leur distance horizontale aux épaules au sommet, normalisée par la largeur des épaules. Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations ; ces indices ne constituent pas une analyse biomécanique complète. Le ralentissement peut avoir plusieurs causes ; il ne prédit ni la fatigue musculaire, ni une blessure, ni la sécurité d’une charge. Commence léger et arrête si tu ressens une douleur.
 
 ## Confidentialité et dépendances
 
