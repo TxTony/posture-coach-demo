@@ -1,25 +1,26 @@
 # Repère — Coach musculation (POC)
 
-> **Preuve de concept expérimentale.** Cette démo explore un coach visuel qui repère un mouvement depuis la caméra. Ce n’est pas un produit fini, un dispositif médical ou un outil validé pour prévenir les blessures. N’utilise pas ses indications pour établir un diagnostic ou décider de poursuivre un exercice douloureux.
+> **Preuve de concept expérimentale.** Cette démo explore un coach visuel qui repère un mouvement depuis la caméra. Ce n’est pas un produit fini, un dispositif médical ou un outil validé pour prévenir les blessures. Les indications ne remplacent pas l’avis d’un professionnel et ne permettent pas de décider de poursuivre un mouvement douloureux.
 
 ## Périmètre actuel
 
-- Un seul exercice : squat au poids du corps, reconnu automatiquement à partir de la flexion et de l’extension des genoux.
-- HUD superposé à la vidéo, comptage des répétitions complètes, phase du mouvement et plein écran.
-- Indications de tempo descente/remontée et écart angulaire gauche/droite.
-- À partir de quatre répétitions, un ralentissement de la remontée est signalé comme tendance observable. Ce n’est pas une mesure de fatigue musculaire.
+- Un seul exercice : développé épaules avec un haltère dans chaque main.
+- Détection du cycle bilatéral à partir des angles des coudes et de la hauteur des poignets.
+- HUD vidéo, comptage des répétitions, phase du mouvement et bouton plein écran.
+- Tempo de descente et de poussée, écart gauche/droite estimé aux coudes.
+- À partir de quatre répétitions, un ralentissement des poussées est signalé comme tendance observable. Ce n’est pas une mesure de fatigue musculaire.
 
-Le matériel n’est pas détecté dans cette version ; la charge est explicitement le poids du corps. Les autres exercices et le stretching restent hors périmètre de ce POC.
+La caméra ne détecte pas les haltères et ne mesure pas leur poids. Les autres exercices, le stretching, l’analyse de la technique complète et la détection de fatigue réelle restent hors périmètre.
 
 ## Utilisation
 
-Ouvre la démo sur téléphone en HTTPS et autorise la caméra. Place le téléphone à environ 2–3 m, corps entier visible, de profil ou de trois-quarts. Appuie sur Démarrer et fais quelques squats complets à vide. Le bouton ⛶ affiche la vidéo en plein écran avec le HUD.
+Ouvre la démo sur téléphone en HTTPS et autorise la caméra. Place le téléphone face à toi à environ 2–3 m ; garde visibles les épaules, les coudes et les mains, dans une bonne lumière. Tiens un haltère dans chaque main, commence avec les haltères près des épaules et pousse-les vers le haut à ton rythme. Le bouton ⛶ affiche la vidéo en plein écran avec le HUD.
 
 Pour un essai local, sers le fichier avec un serveur HTTP, par exemple python3 -m http.server 8000, puis ouvre localhost:8000.
 
 ## Limites
 
-Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations. La symétrie affichée est une différence d’angles estimée par caméra, pas une analyse biomécanique complète. Une caméra unique ne permet pas de mesurer directement le poids soulevé ni de prédire une blessure. Arrête si tu ressens une douleur.
+Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations. La symétrie affichée est une différence d’angles estimée par caméra, pas une analyse biomécanique complète. Le ralentissement peut avoir plusieurs causes ; il ne prédit pas la fatigue musculaire, une blessure ou la sécurité d’une charge. Commence léger et arrête si tu ressens une douleur.
 
 ## Confidentialité et dépendances
 
