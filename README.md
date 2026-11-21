@@ -22,7 +22,7 @@ Pour un essai local, sers le fichier avec un serveur HTTP local, par exemple `py
 
 ## Dépendances
 
-- MediaPipe Tasks Vision `0.10.22`, chargé depuis jsDelivr.
+- MediaPipe Tasks Vision `0.10.21`, chargé depuis jsDelivr.
 - Modèle Pose Landmarker Lite chargé depuis Google Cloud Storage.
 
 Le prototype est volontairement minimal et ne constitue pas une application prête à l’emploi ou à la commercialisation.
