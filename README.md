@@ -7,10 +7,11 @@
 - Un seul exercice : développé épaules avec un haltère dans chaque main.
 - Détection du cycle bilatéral à partir des angles des coudes et de la hauteur des poignets.
 - HUD vidéo, comptage des répétitions, phase du mouvement et bouton plein écran.
-- Tempo de descente et de poussée, écart gauche/droite estimé aux coudes.
-- À partir de quatre répétitions, un ralentissement des poussées est signalé comme tendance observable. Ce n’est pas une mesure de fatigue musculaire.
+- Vitesse moyenne de variation de l’angle des coudes pendant la descente et la poussée, affichée en degrés par seconde (°/s). Ce n’est pas la vitesse réelle des haltères.
+- Symétrie estimée par l’écart entre les amplitudes angulaires gauche/droite et le décalage temporel d’arrivée des bras au sommet.
+- Après quelques répétitions, une baisse de vitesse de poussée par rapport aux premières répétitions est affichée comme tendance. Ce n’est pas une mesure de fatigue musculaire.
 
-La caméra ne détecte pas les haltères et ne mesure pas leur poids. Les autres exercices, le stretching, l’analyse de la technique complète et la détection de fatigue réelle restent hors périmètre.
+La caméra ne détecte pas les haltères et ne mesure pas leur poids. Les autres exercices, le stretching, l’analyse complète de la technique et la détection de fatigue réelle restent hors périmètre.
 
 ## Utilisation
 
@@ -20,7 +21,7 @@ Pour un essai local, sers le fichier avec un serveur HTTP, par exemple python3 -
 
 ## Limites
 
-Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations. La symétrie affichée est une différence d’angles estimée par caméra, pas une analyse biomécanique complète. Le ralentissement peut avoir plusieurs causes ; il ne prédit pas la fatigue musculaire, une blessure ou la sécurité d’une charge. Commence léger et arrête si tu ressens une douleur.
+L’angle du coude est calculé entre épaule, coude et poignet, en degrés. Les vitesses sont des moyennes calculées sur les phases détectées, pas une mesure continue du trajet des haltères. Les angles 2D dépendent du cadrage, de la perspective, de la lumière et de la visibilité des articulations ; la symétrie affichée n’est pas une analyse biomécanique complète. Le ralentissement peut avoir plusieurs causes ; il ne prédit ni la fatigue musculaire, ni une blessure, ni la sécurité d’une charge. Commence léger et arrête si tu ressens une douleur.
 
 ## Confidentialité et dépendances
 
