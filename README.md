@@ -30,3 +30,26 @@ L’angle du coude est calculé entre épaule, coude et poignet, en degrés. Les
 La vidéo est traitée dans le navigateur et n’est pas envoyée à un serveur applicatif. Au démarrage, la page télécharge MediaPipe Tasks Vision 0.10.21 depuis jsDelivr et le modèle Pose Landmarker Lite depuis Google Cloud Storage ; ces fournisseurs reçoivent les requêtes de téléchargement, pas le flux caméra de cette démo.
 
 Le code est contenu dans index.html, avec des sections distinctes pour configuration, géométrie, reconnaissance de l’exercice, analyse de série, modèle, HUD et cycle de vie caméra. Le prototype reste minimal et n’a pas fait l’objet d’une validation produit ou clinique.
+
+## Comparaison MediaPipe / YOLO26
+
+- [Démo MediaPipe](https://txtony.github.io/posture-coach-demo/) : index.html conservé sans modification.
+- [Démo YOLO26 Nano Pose](https://txtony.github.io/posture-coach-demo/yolo.html) : même interface adaptative, HUD et logique de développé épaules, avec ONNX Runtime Web 1.23.2.
+
+YOLO utilise 17 articulations COCO ; seules épaules, coudes, poignets et hanches sont adaptées aux indices de l’analyse existante. Reste seul dans le cadre : la personne de plus forte confiance est sélectionnée, sans suivi d’identité entre plusieurs personnes. Une perte de pose réinitialise le cycle incomplet après 500 ms.
+
+Le moteur Auto essaie WebGPU, puis WASM en cas d’échec ; le sélecteur permet de forcer WASM. WASM utilise un seul thread pour fonctionner sur GitHub Pages sans en-têtes d’isolation. La vidéo reste locale ; jsDelivr et Hugging Face reçoivent uniquement les requêtes des dépendances et du modèle.
+
+### Modèle et format vérifiés
+
+[Export FP32 épinglé](https://huggingface.co/prithivMLmods/YOLO26-ONNX/blob/1079a1c/yolo26n-pose/yolo26n-pose.onnx), environ 12,1 Mo, licence AGPL-3.0 indiquée dans ses métadonnées. [Documentation Ultralytics](https://docs.ultralytics.com/integrations/onnx/).
+
+Entrée images float32 [1,3,640,640] : RGB / 255, format NCHW, redimensionnement proportionnel et remplissage gris 114. Sortie output0 float32 [1,300,57] : x1,y1,x2,y2,score,classe puis 17 triplets x,y,confiance. Coordonnées en pixels du carré 640 ; le remplissage est retiré pour le rendu. Export end-to-end sans NMS supplémentaire. Le fichier a été exécuté avec ONNX Runtime sur une image publique Ultralytics pour contrôler ces valeurs.
+
+### Vérification et performances
+
+Le bouton « Tester le modèle sans caméra » télécharge le modèle et exécute un échauffement puis une inférence ; il vérifie aussi le type et la forme de la sortie. Tester Auto puis WASM avant d’activer la caméra.
+
+En session, inférence = durée de session.run ; cycle = prétraitement, inférence et décodage ; cadence = fréquence réelle des résultats successifs, pas la fréquence d’affichage vidéo. Les mesures varient selon le téléphone et la chauffe. Aucun débit mobile n’est garanti.
+
+Avant utilisation, vérifier sur le téléphone cible : autorisation caméra, rotation, changement avant/arrière, plein écran, arrêt/redémarrage, perte puis retour des bras, et répétitions réelles. Le test sans caméra ne valide pas la précision du comptage ni la technique sportive.
